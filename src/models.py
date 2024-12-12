@@ -135,3 +135,17 @@ class ResNetCifar(nn.Module):
         # # 应用log_softmax激活函数
         # return F.log_softmax(x, dim=1)
         return x
+
+
+class ResNetSeeships(nn.Module):
+    def __init__(self, args):
+        # super(ResNetSeeships, self).__init__()
+        super().__init__()
+        self.resnet = models.resnet50(pretrained=True)
+        num_ftrs = self.resnet.fc.in_features
+        self.resnet.fc = nn.Linear(num_ftrs, 6)
+
+    def forward(self, x):
+        x = self.resnet(x)
+        return x
+

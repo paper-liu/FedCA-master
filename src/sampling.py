@@ -20,7 +20,6 @@ def specical_processing(dict_users, dataset, num_users, opt):
 
     # Reduce the amount of data for the last two users to 50% of the original
     if opt == 'less':
-
         # ll = len(dict_users[0]) * 0.2
         # for i in range(num_users - 2, num_users):
         #     while len(dict_users[i]) > ll:

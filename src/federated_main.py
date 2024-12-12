@@ -11,7 +11,7 @@ from tqdm import tqdm
 import torch
 from options import args_parser
 from update import LocalUpdate, test_inference
-from models import MLP, CNNMnist, CNNFashion_Mnist, CNNCifar, ResNetMnist, ResNetFashion_Mnist, ResNetCifar
+from models import MLP, CNNMnist, CNNFashion_Mnist, CNNCifar, ResNetMnist, ResNetFashion_Mnist, ResNetCifar, ResNetSeeships
 from utils import mkdirs, get_dataset, average_weights, average_gradients
 from utils import exp_details, gpu_is_available, show_training_state_diagram
 from utils import calculate_contribution, calculate_distance, calculate_final_contribution, calculate_avg_acc_loss
@@ -96,6 +96,8 @@ if __name__ == '__main__':
             global_model = ResNetFashion_Mnist(args=args)
         elif args.dataset == 'cifar':
             global_model = ResNetCifar(args=args)
+        elif args.dataset == 'seeships':
+            global_model = ResNetSeeships(args=args)
     # Multi-layer perceptron
     elif args.model == 'mlp':
         img_size = train_dataset[0][0].shape

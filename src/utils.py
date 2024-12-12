@@ -59,6 +59,32 @@ def get_dataset(args):
                 # Chose euqal splits for every user
                 user_groups = cifar_noniid(train_dataset, args.num_users)
 
+    elif args.dataset == 'seeships':
+        data_dir = './data/seeships_cls/'
+        data_transforms = {
+            'train': transforms.Compose([
+                transforms.RandomResizedCrop(224),
+                transforms.RandomHorizontalFlip(),
+                transforms.ToTensor(),
+                # transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+            ]),
+            'val': transforms.Compose([
+                transforms.Resize(256),
+                transforms.CenterCrop(224),
+                transforms.ToTensor(),
+                # transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+            ]),
+        }
+
+        train_dataset = datasets.ImageFolder(os.path.join(data_dir, 'train'), data_transforms['train'])
+        test_dataset = datasets.ImageFolder(os.path.join(data_dir, 'val'), data_transforms['val'])
+
+        # sample training data amongst users
+        if args.iid:
+            # Assuming you have a function to handle IID user data sampling for your custom dataset
+            # You need to implement or adapt the cifar_iid function for your custom dataset
+            user_groups, modified_user_groups, modified_dataset = cifar_iid(train_dataset, args.num_users, args.opt)
+
     elif args.dataset == 'fmnist':
         data_dir = './data/fashion_mnist/'
         apply_transform = transforms.Compose([

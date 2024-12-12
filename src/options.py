@@ -7,11 +7,11 @@ import argparse
 def args_parser():
     parser = argparse.ArgumentParser()
 
-    # fedcon arguments
+    # fedca arguments
     parser.add_argument('--pre_round', type=int, default=10,
                         help="number of rounds of pre-training")
     parser.add_argument('--opt', type=str, default='normal',
-                        help="type of specical_processing")
+                        help="type of specical_processing (normal, noise, mislabel)")
     parser.add_argument('--get_gradients', type=int, default=0,
                         help="Default set to gradients. Set to 0 for weights.")
     parser.add_argument('--loss', type=str, default='NLLLoss',
@@ -57,7 +57,7 @@ def args_parser():
     parser.add_argument('--log_file_name', type=str, default=None,
                         help='The log file name')
     parser.add_argument('--dataset', type=str, default='mnist',
-                        help="name of dataset. (mnist, fmnist, cifar)")
+                        help="name of dataset. (mnist, fmnist, cifar, seeships)")
     parser.add_argument('--num_classes', type=int, default=10,
                         help="number of classes")
     parser.add_argument('--gpu', default=None,
